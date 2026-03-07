@@ -16,6 +16,20 @@ export async function POST(request) {
 
     // If Supabase is configured, save to database
     if (supabase) {
+      // Check for duplicate name
+      const { data: existing } = await supabase
+        .from('rsvp')
+        .select('id')
+        .ilike('name', name.trim())
+        .limit(1);
+
+      if (existing && existing.length > 0) {
+        return NextResponse.json(
+          { error: 'Nama ini sudah didaftarkan / This name has already been registered' },
+          { status: 409 }
+        );
+      }
+
       const { data, error } = await supabase
         .from('rsvp')
         .insert([
