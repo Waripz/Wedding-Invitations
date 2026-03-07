@@ -677,9 +677,10 @@ input, textarea {
 .hubungi-flower-br {
   position: absolute;
   bottom: -60px;
-  right: -30px;
+  right: -40px;
   width: 300px; /* Make the new lily larger to match design */
   z-index: 2;
+  pointer-events: none;
 }
 
 /* Right Column Specifics */
@@ -1300,7 +1301,7 @@ input, textarea {
     left: -22px;
   }
   .lokasi-address {
-    font-size: 0.45rem;
+    font-size: 0.53rem;
     line-height: 1.4;
   }
 
@@ -1316,9 +1317,9 @@ input, textarea {
     font-size: 0.42rem;
   }
   .hubungi-flower-br {
-    width: 165px;
+    width: 169px;
     bottom: -64px;
-    right: -75px;
+    right: -79px;
   }
   .whatsapp-btn {
     padding: 3px;
@@ -1341,7 +1342,7 @@ input, textarea {
     margin-bottom: 0px;
   }
   .rsvp-text {
-    font-size: 0.42rem;
+    font-size: 0.52rem;
     margin-bottom: 15px;
   }
   .rsvp-butterfly {
