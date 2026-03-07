@@ -1320,6 +1320,7 @@ input, textarea {
     width: 169px;
     bottom: -64px;
     right: -79px;
+    pointer-events: none;
   }
   .whatsapp-btn {
     padding: 3px;
