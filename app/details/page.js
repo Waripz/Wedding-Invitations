@@ -8,6 +8,7 @@ export default function DetailsPage() {
   const [countdown, setCountdown] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   const [typedText, setTypedText] = useState('');
   const [showCursor, setShowCursor] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   const fullInvitationText = 'Dengan izin Allah SWT, dua hati disatukan,\nkami menjemput,\nDato\'/Datin/Tuan/Puan/Encik/Cik\ndan sekeluarga ke majlis perkahwinan puteri kami\nyang tercinta';
 
@@ -44,6 +45,18 @@ export default function DetailsPage() {
     );
     document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
     return () => observer.disconnect();
+  }, []);
+
+  // Auto-play music when page loads (user already interacted via envelope)
+  useEffect(() => {
+    const audio = document.getElementById('bg-music');
+    if (audio) {
+      audio.play().then(() => {
+        setIsPlaying(true);
+      }).catch(() => {
+        // Browser blocked autoplay, user will click play manually
+      });
+    }
   }, []);
 
   // Typewriter effect for invitation text
@@ -136,18 +149,31 @@ export default function DetailsPage() {
         </div>
       </div>
 
-      {/* 2. Spotify Embed */}
-      <div className="spotify-embed reveal">
-        <iframe
-          style={{ borderRadius: '12px' }}
-          src="https://open.spotify.com/embed/track/3AAAGS7iM1ekDywqdYMJG2?utm_source=generator&theme=0"
-          width="100%"
-          height="80"
-          frameBorder="0"
-          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-          loading="lazy"
-          title="Spotify - Akad"
-        />
+      {/* 2. Music Player */}
+      <div className="music-player reveal">
+        <div className="music-player-inner">
+          <img src="/images/music-thumbnail.png" alt="Album Art" className="music-album-art" />
+          <div className="music-info">
+            <p className="music-title">Lagu Pernikahan Kita</p>
+            <p className="music-artist">Tiara Andini & Arsy Widianto</p>
+          </div>
+          <button
+            className={`music-play-btn ${isPlaying ? 'playing' : ''}`}
+            onClick={() => {
+              const audio = document.getElementById('bg-music');
+              if (audio.paused) {
+                audio.play();
+                setIsPlaying(true);
+              } else {
+                audio.pause();
+                setIsPlaying(false);
+              }
+            }}
+          >
+            {isPlaying ? '❚❚' : '▶'}
+          </button>
+        </div>
+        <audio id="bg-music" src="/music/music-background.mp3" loop />
       </div>
 
       {/* 3. Countdown */}
