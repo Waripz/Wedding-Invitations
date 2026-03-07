@@ -6,6 +6,13 @@ export default function Home() {
   const router = useRouter();
 
   const handleClick = () => {
+    // Start music from user click (browsers allow audio after user gesture)
+    if (!window.__weddingAudio) {
+      const audio = new Audio('/music/music-background.mp3');
+      audio.loop = true;
+      window.__weddingAudio = audio;
+    }
+    window.__weddingAudio.play().catch(() => {});
     router.push('/details');
   };
 

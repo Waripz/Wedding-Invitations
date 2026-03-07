@@ -47,15 +47,10 @@ export default function DetailsPage() {
     return () => observer.disconnect();
   }, []);
 
-  // Auto-play music when page loads (user already interacted via envelope)
+  // Sync with global audio that started from envelope click
   useEffect(() => {
-    const audio = document.getElementById('bg-music');
-    if (audio) {
-      audio.play().then(() => {
-        setIsPlaying(true);
-      }).catch(() => {
-        // Browser blocked autoplay, user will click play manually
-      });
+    if (window.__weddingAudio && !window.__weddingAudio.paused) {
+      setIsPlaying(true);
     }
   }, []);
 
@@ -160,20 +155,21 @@ export default function DetailsPage() {
           <button
             className={`music-play-btn ${isPlaying ? 'playing' : ''}`}
             onClick={() => {
-              const audio = document.getElementById('bg-music');
-              if (audio.paused) {
-                audio.play();
-                setIsPlaying(true);
-              } else {
-                audio.pause();
-                setIsPlaying(false);
+              const audio = window.__weddingAudio;
+              if (audio) {
+                if (audio.paused) {
+                  audio.play().catch(() => {});
+                  setIsPlaying(true);
+                } else {
+                  audio.pause();
+                  setIsPlaying(false);
+                }
               }
             }}
           >
             {isPlaying ? '❚❚' : '▶'}
           </button>
         </div>
-        <audio id="bg-music" src="/music/music-background.mp3" loop />
       </div>
 
       {/* 3. Countdown */}
