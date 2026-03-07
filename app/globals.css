@@ -796,12 +796,13 @@ input, textarea {
 /* ============ PAGE 3 - RSVP (Mustard/Gold Theme) ============ */
 .page-rsvp {
   min-height: 100vh;
-  background-color: #CAC58A; /* Exact greenish-khaki background */
+  background-color: #CAC58A;
   position: relative;
   padding: 40px 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow-x: hidden;
 }
 
 .rsvp-header {
