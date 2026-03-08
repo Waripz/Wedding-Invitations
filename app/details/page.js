@@ -209,7 +209,13 @@ export default function DetailsPage() {
         {/* Left Column: Lokasi & Hubungi */}
         <div className="info-col-left">
           {/* Lokasi Card */}
-          <div className="lokasi-card">
+          <div 
+            className="lokasi-card" 
+            style={{ cursor: 'pointer' }}
+            onClick={() => window.open("https://www.google.com/maps/dir/2.9008949,101.8340691/DeRoses+Events,+F-02-01+Conezion+IOI+RESORT+CITY,+62502+Putrajaya,+Wilayah+Persekutuan+Putrajaya/@2.9390522,101.698667,26497m/data=!3m2!1e3!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x31cdcb3b84cf584f:0x2fcd9aec8a7ddb98!2m2!1d101.7208485!2d2.9654707?entry=ttu&g_ep=EgoyMDI2MDMwNS4wIKXMDSoASAFQAw%3D%3D", "_blank")}
+            role="button"
+            tabIndex={0}
+          >
             <img src="/images/Flower4.png" alt="" className="lokasi-flower-tl" />
             <h3 className="card-heading-script">Lokasi</h3>
             <p className="lokasi-address">
@@ -217,9 +223,9 @@ export default function DetailsPage() {
               62502 Putrajaya, Wilayah Persekutuan<br />
               Putrajaya
             </p>
-            <a href="https://www.google.com/maps/dir/2.9008949,101.8340691/DeRoses+Events,+F-02-01+Conezion+IOI+RESORT+CITY,+62502+Putrajaya,+Wilayah+Persekutuan+Putrajaya/@2.9390522,101.698667,26497m/data=!3m2!1e3!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x31cdcb3b84cf584f:0x2fcd9aec8a7ddb98!2m2!1d101.7208485!2d2.9654707?entry=ttu&g_ep=EgoyMDI2MDMwNS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" className="tekan-sini-link">
+            <span className="tekan-sini-link">
               TEKAN SINI
-            </a>
+            </span>
           </div>
 
           {/* Hubungi Card */}
@@ -251,12 +257,18 @@ export default function DetailsPage() {
             <img src="/images/Flowericon.png" alt="Flower icon" />
           </div>
 
-          <div className="rsvp-card">
+          <div 
+            className="rsvp-card" 
+            style={{ cursor: 'pointer' }}
+            onClick={() => router.push('/rsvp')}
+            role="button"
+            tabIndex={0}
+          >
             <h3 className="card-heading-script rsvp-title">Rsvp</h3>
             <p className="rsvp-text">Sila isi maklumat kehadiran anda</p>
-            <button onClick={() => router.push('/rsvp')} className="tekan-sini-link" style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', fontFamily: 'var(--font-serif)' }}>
+            <span className="tekan-sini-link">
               TEKAN SINI
-            </button>
+            </span>
             <img src="/images/butterfly.png" alt="" className="rsvp-butterfly" />
           </div>
         </div>

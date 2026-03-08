@@ -1409,6 +1409,7 @@ input, textarea {
     max-width: 100%;
     width: 100%;
     margin: 0;
+    transform: translateX(4px);
   }
   .rsvp-title {
     font-size: 1.4rem;
