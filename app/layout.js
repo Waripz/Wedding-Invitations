@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
     <html lang="ms">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/images/Flowericon.png" type="image/png" />
+        <link rel="icon" href="/images/Bride.png" type="image/png" />
       </head>
       <body>
         <div className="page-wrapper">

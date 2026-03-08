@@ -17,7 +17,7 @@ export default function AdminPage() {
       setAuthenticated(true);
       fetchResponses();
     } else {
-      alert('Kata laluan salah');
+      alert('TAKKAN TU PON TAK INGAT!!?');
     }
   };
 
