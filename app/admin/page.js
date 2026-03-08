@@ -12,7 +12,7 @@ export default function AdminPage() {
     e.preventDefault();
     // Simple password check - set ADMIN_PASSWORD in env vars
     // Default password for local dev is 'nisha&danial'
-    const adminPwd = 'nishadanial2026';
+    const adminPwd = 'nisha2026';
     if (password === adminPwd) {
       setAuthenticated(true);
       fetchResponses();

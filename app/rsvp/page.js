@@ -162,7 +162,7 @@ export default function RSVPPage() {
               </div>
 
               <button type="submit" className="rsvp-submit-btn" disabled={submitting}>
-                {submitting ? 'Menghantar...' : 'RSVP'}
+                {submitting ? 'hantar...' : 'RSVP'}
               </button>
             </form>
           </div>
@@ -172,14 +172,16 @@ export default function RSVPPage() {
         {wishes.length > 0 && (
           <div className="wishes-section">
             <h3 className="wishes-title">Ucapan Tetamu</h3>
-            <div className="wishes-grid">
-              {wishes.map((wish, index) => (
-                <div key={index} className="wish-card reveal">
-                  <p className="wish-name">{wish.name}</p>
-                  <p className="wish-message">{wish.wishes}</p>
-                  <p className="wish-time">{formatTime(wish.created_at)}</p>
-                </div>
-              ))}
+            <div className="wishes-scroll-container reveal">
+              <div className="wishes-scroll-track">
+                {wishes.map((wish, index) => (
+                  <div key={index} className="wish-card">
+                    <p className="wish-name">{wish.name}</p>
+                    <p className="wish-message">{wish.wishes}</p>
+                    <p className="wish-time">{formatTime(wish.created_at)}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         )}
