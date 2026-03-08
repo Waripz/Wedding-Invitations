@@ -12,6 +12,7 @@ export default function RSVPPage() {
   const [submitting, setSubmitting] = useState(false);
   const [toast, setToast] = useState(null);
   const [wishes, setWishes] = useState([]);
+  const [showCalendarModal, setShowCalendarModal] = useState(false);
 
   useEffect(() => {
     fetchWishes();
@@ -69,24 +70,8 @@ export default function RSVPPage() {
         
         // Google Calendar Logic
         if (formData.attendance === 'yes') {
-          // Ask user if they want to add to calendar
-          const addToCalendar = window.confirm('Adakah anda ingin memasukkan acara ini ke dalam Google Calendar anda? / Would you like to add this event to your Google Calendar?');
-          
-          if (addToCalendar) {
-            const eventTitle = encodeURIComponent('Majlis Menyulam Kasih | Nisha & Danial');
-            const details = encodeURIComponent('Majlis Raja Sehari - Wan Nisha Aqilah & Muhammad Danial Faris');
-            const location = encodeURIComponent('Conezion IOI Resort City, Putrajaya');
-            
-            // Format dates: YYYYMMDDTHHmmssZ
-            // Time in Malaysia is UTC+8.
-            // 12:00 PM MYT -> 04:00 AM UTC
-            // 05:00 PM MYT -> 09:00 AM UTC
-            const dates = '20260405T040000Z/20260405T090000Z'; 
-            
-            const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${eventTitle}&dates=${dates}&details=${details}&location=${location}`;
-            
-            window.open(googleCalendarUrl, '_blank');
-          }
+          // Open custom modal instead of window.confirm
+          setShowCalendarModal(true);
         }
 
         setFormData({ name: '', attendance: '', pax: '', wishes: '' });
@@ -99,6 +84,22 @@ export default function RSVPPage() {
     } finally {
       setSubmitting(false);
     }
+  };
+
+  const handleAddToCalendar = () => {
+    const eventTitle = encodeURIComponent('Majlis Menyulam Kasih | Nisha & Danial');
+    const details = encodeURIComponent('Majlis Raja Sehari - Wan Nisha Aqilah & Muhammad Danial Faris');
+    const location = encodeURIComponent('Conezion IOI Resort City, Putrajaya');
+    
+    // Format dates: YYYYMMDDTHHmmssZ
+    // 12:00 PM MYT -> 04:00 AM UTC
+    // 05:00 PM MYT -> 09:00 AM UTC
+    const dates = '20260405T040000Z/20260405T090000Z'; 
+    
+    const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${eventTitle}&dates=${dates}&details=${details}&location=${location}`;
+    
+    window.open(googleCalendarUrl, '_blank');
+    setShowCalendarModal(false);
   };
 
   const showToast = (message, type) => {
@@ -225,6 +226,24 @@ export default function RSVPPage() {
 
       {/* Toast */}
       {toast && <div className={`toast toast-${toast.type}`}>{toast.message}</div>}
+
+      {/* Calendar Modal */}
+      {showCalendarModal && (
+        <div className="calendar-modal-overlay">
+          <div className="calendar-modal-content">
+            <h3 className="calendar-modal-title">Add to Google Calendar?</h3>
+            <p className="calendar-modal-text">Adakah anda ingin memasukkan acara ini ke dalam Google Calendar anda? / Would you like to add this event to your Google Calendar?</p>
+            <div className="calendar-modal-actions">
+              <button type="button" onClick={handleAddToCalendar} className="calendar-modal-btn-confirm">
+                Ya / Add to Calendar
+              </button>
+              <button type="button" onClick={() => setShowCalendarModal(false)} className="calendar-modal-btn-cancel">
+                Tidak / Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }

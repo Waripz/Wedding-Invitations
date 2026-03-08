@@ -1602,3 +1602,80 @@ input, textarea {
     padding: 15px 12px;
   }
 }
+
+/* --- Google Calendar Modal --- */
+.calendar-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(3px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+}
+
+.calendar-modal-content {
+  background: var(--cream-light);
+  padding: 30px 20px;
+  border-radius: 12px;
+  text-align: center;
+  max-width: 350px;
+  width: 90%;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+  border: 2px solid var(--gold-light);
+  animation: fadeInDown 0.3s ease-out;
+}
+
+.calendar-modal-title {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  color: var(--maroon-dark);
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+
+.calendar-modal-text {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  color: var(--brown-text);
+  margin-bottom: 25px;
+  line-height: 1.5;
+}
+
+.calendar-modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.calendar-modal-btn-confirm {
+  background: var(--maroon);
+  color: white;
+  padding: 12px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: background 0.2s;
+  cursor: pointer;
+  border: none;
+}
+
+.calendar-modal-btn-confirm:hover {
+  background: var(--maroon-light);
+}
+
+.calendar-modal-btn-cancel {
+  background: transparent;
+  color: var(--maroon-dark);
+  padding: 10px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  border: 1px solid var(--maroon-dark);
+  cursor: pointer;
+}
+
